@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card card-top-left">
+            <div class="time"></div>
+            <div class="date"></div>
+        </div>
+        <div class="card card-top-right">
+            <div class="health-status">
+                <div class="heart-rate">
+                    <i class="fas fa-heartbeat"></i>
+                    <span class="value">--</span> bpm
+                </div>
+                <div class="breath-rate">
+                    <i class="fas fa-lungs"></i>
+                    <span class="value">--</span> breaths/min
+                </div>
+            </div>
+        </div>
+        <div class="card card-bottom-left">
+            <div class="weather-icon"></div>
+            <div class="weather-info">
+                <div class="temperature">--°C</div>
+                <div class="description">----</div>
+                <div class="location">----</div>
+            </div>
+        </div>
+        <div class="card card-bottom-right">
+            <div class="media-cover"></div>
+            <div class="media-info">
+                <div class="title">----</div>
+                <div class="artist-game">----</div>
+                <div class="duration">
+                    <span class="current-time">00:00</span> / <span class="total-time">00:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

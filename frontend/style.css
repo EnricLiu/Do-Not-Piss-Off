@@ -1,0 +1,180 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    /* 四色渐变背景 */
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #f7bb97 75%, #eecda3 100%);
+    margin: 0;
+    overflow: hidden;
+    color: #333;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 20px;
+    padding: 120px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.6);
+    /* 毛玻璃效果 */
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* 阴影 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+    color: #333;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 卡片特定样式 */
+.card-top-left {
+    text-align: center;
+    font-size: 24px;
+}
+
+.card-top-left .time {
+    font-size: 64px;
+    font-weight: bold;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-top-left .date {
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+.card-top-right {
+    font-size: 20px;
+}
+
+.health-status {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.heart-rate,
+.breath-rate {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heart-rate i,
+.breath-rate i {
+    font-size: 32px;
+    color: #ff4d4d;
+    margin-right: 10px;
+}
+
+.card-bottom-left {
+    flex-direction: row;
+    align-items: center;
+}
+
+.weather-icon {
+    font-size: 64px;
+    margin-right: 20px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.weather-info {
+    text-align: left;
+}
+
+.temperature {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.card-bottom-right {
+    flex-direction: row;
+    align-items: center;
+}
+
+.media-cover {
+    width: 150px;
+    height: 150px;
+    background-color: #ddd;
+    border-radius: 15px;
+    margin-right: 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.media-info {
+    text-align: left;
+    flex-grow: 1;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.artist-game {
+    font-size: 18px;
+    margin-top: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.duration {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+/* 发光效果 */
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 182, 193, 0.5);
+    }
+
+    100% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.time,
+.weather-icon {
+    animation: glow 3s ease-in-out infinite;
+}
+
+/* 响应式设计 (可选) */
+@media (max-width: 1920px) {
+    .container {
+        width: 100%;
+        height: auto;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+}
