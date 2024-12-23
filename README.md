@@ -1,2 +1,2 @@
 # Do-Not-Piss-Off
-"Temperature" Detecting System for Gamers
+A "Temperature" Detecting System for Gamers
