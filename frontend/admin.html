@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神秘后台</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <div class="settings-container">
+        <h1 class="page-title">😈😈神秘后台😈😈</h1>
+
+        <div class="input-area">
+            <div class="input-row">
+                <div class="settings-group">
+                    <label for="heart_mean">心率基准 bpm</label>
+                    <input type="number" id="heart_mean" value="70">
+                </div>
+                <div class="settings-group">
+                    <label for="heart_freq">心率变化率 Hz</label>
+                    <input type="number" id="heart_freq" value="3">
+                </div>
+                <div class="settings-group">
+                    <label for="heart_vary">心率变化范围 bpm</label>
+                    <input type="number" id="heart_vary" value="10">
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="settings-group">
+                    <label for="breath_mean">呼吸基准 bpm</label>
+                    <input type="number" id="breath_mean" value="17">
+                </div>
+                <div class="settings-group">
+                    <label for="breath_freq">呼吸变化率 Hz</label>
+                    <input type="number" id="breath_freq" value="1">
+                </div>
+                <div class="settings-group">
+                    <label for="breath_vary">呼吸变化范围 bpm</label>
+                    <input type="number" id="breath_vary" value="5">
+                </div>
+            </div>
+        </div>
+
+        <div class="button-area">
+            <div class="button-row">
+                <button class="btn set-btn" onclick="overwrite('heart_rate', true)">
+                    覆盖心率</button>
+                <button class="btn cancel-btn" onclick="overwrite('heart_rate', false)">
+                    取消覆盖心率</button>
+                <button class="btn reset-btn">重置心率</button>
+                <button class="btn set-btn">覆盖呼吸</button>
+                <button class="btn cancel-btn">取消覆盖呼吸</button>
+                <button class="btn reset-btn">重置呼吸</button>
+            </div>
+            <div class="button-row">
+                <button class="btn emo-btn" id="neutral">平静</button>
+                <button class="btn emo-btn" id="happy">高兴</button>
+                <button class="btn emo-btn" id="sad">悲伤</button>
+                <button class="btn emo-btn" id="angry">愤怒</button>
+                <button class="btn emo-btn" id="fear">害怕</button>
+                <button class="btn emo-btn" id="disgust">恶心</button>
+            </div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
+</body>
+
+</html>

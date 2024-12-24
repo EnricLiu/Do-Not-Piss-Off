@@ -1,0 +1,185 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f0f2f5;
+    /* 四色渐变背景 */
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #f7bb97 75%, #eecda3 100%);
+    margin: 0;
+    overflow: hidden;
+    color: #333;
+}
+
+.settings-container {
+    width: 70%;
+    height: 80vmin;
+    /* 调整宽度以适应更多按钮 */
+    background: rgba(255, 255, 255, 0.6);
+    /* 毛玻璃效果 */
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    /* 阴影 */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 5vmin;
+    text-align: center;
+    /* 居中内容 */
+}
+
+@media (max-width: 1920px) {
+    .settings-container {
+        width: 70%;
+        height: 70%;
+        /* 调整宽度以适应更多按钮 */
+        background: rgba(255, 255, 255, 0.6);
+        /* 毛玻璃效果 */
+        border-radius: 25px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        /* 阴影 */
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        padding: 5vmin;
+        text-align: center;
+        /* 居中内容 */
+    }
+}
+
+.page-title {
+    font-size: 5vmin;
+    font-weight: bold;
+    margin-bottom: 3vmin;
+    margin-top: 1vmin;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* 标题阴影 */
+}
+
+/* 输入框区域 */
+.input-area {
+    margin: 0px 10% 5vmin 10%;
+}
+
+.input-row {
+    display: flex;
+    justify-content: space-between;
+    /* 调整间距 */
+    margin-bottom: 3vmin;
+}
+
+.settings-group {
+    display: flex;
+    flex-direction: column;
+    /* 垂直布局 */
+    align-items: center;
+    /* 居中 */
+}
+
+.settings-group label {
+    margin-bottom: 1vmin;
+    /* 调整 label 和 input 之间的间距 */
+    font-size: 3.5vmin;
+}
+
+.settings-group input {
+    /* 设置输入框宽度 */
+    width: 50%;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 3.5vmin;
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.settings-group input:focus {
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(159, 155, 250, 0.3);
+}
+
+/* 按钮区域 */
+.button-area {
+    margin-top: 1vmin;
+}
+
+.button-row {
+    display: flex;
+    justify-content: space-between;
+    /* 调整间距 */
+    margin-bottom: 2vmin;
+}
+
+.btn {
+    flex: 1;
+    /* 让按钮平均分配空间 */
+    max-width: 15%;
+    /* 最大宽度 */
+    padding: 3vmin 2vmin;
+    /* 调整内边距 */
+    border: none;
+    border-radius: 2vmin;
+    font-size: 2.5vmin;
+    font-weight: bold;
+    cursor: pointer;
+    /* 调整外边距 */
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: inline-flex;
+    align-items: left;
+    justify-content: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.emo-btn {
+    background: linear-gradient(135deg, #9687fa 0%, #b7b3fb 100%);
+    color: white;
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #e8e8e8 0%, #f8f8f8 100%);
+    color: #333;
+}
+
+.cancel-btn {
+    background: linear-gradient(135deg, #f8a68c 0%, #f8c793 100%);
+    color: white;
+}
+
+.set-btn {
+    background: linear-gradient(135deg, #ff8c69 0%, #ffb86c 100%);
+    color: white;
+}
+
+/* 发光效果 */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 182, 193, 0.5), 0 6px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.special-btn:hover {
+    animation: glow 2s infinite;
+}
+
+
