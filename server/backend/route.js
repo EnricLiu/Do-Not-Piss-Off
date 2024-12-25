@@ -1,14 +1,15 @@
 const fs = require('fs');
 
 const express = require('express');
+const { devNull } = require('os');
 const router = express();
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'];
-    if (!token) return res.status(401).send('Unauthorized');
-    if (!router.allValidTokens) return res.status(502).send('Bad Gateway');
-    if (!router.allValidTokens.includes(token)) {
-        return res.status(401).send('Unauthorized');
-    }
+    // const token = req.headers['authorization'];
+    // if (!token) return res.status(401).send('Unauthorized');
+    // if (!router.allValidTokens) return res.status(502).send('Bad Gateway');
+    // if (!router.allValidTokens.includes(token)) {
+    //     return res.status(401).send('Unauthorized');
+    // }
 
     next();
 }
@@ -97,6 +98,34 @@ router.post('/emotion', (req, res) => {
         }
     }
     res.send("ok");
-});
+}); 
+
+let gOverrideState = {
+    "heart": {
+        "is_override": false,
+        "mean": null,
+        "range": null
+    },
+    "breath": {
+        "is_override": false,
+        "mean": null,
+        "range": null
+    },
+    "emotion": {
+        "is_override": false,
+        "target": null
+    }
+}
+
+router.get('/override', (req, res) => {
+    res.json(gOverrideState)
+})
+
+router.post('/override', (req, res) => {
+    const body = req.body;
+    gOverrideState = body;
+    console.log(gOverrideState)
+    res.send("ok");
+})
 
 module.exports = router;

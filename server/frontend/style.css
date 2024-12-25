@@ -148,12 +148,12 @@ body {
     color: white;
 }
 
-.reset-btn {
+.rst-btn {
     background: linear-gradient(135deg, #e8e8e8 0%, #f8f8f8 100%);
     color: #333;
 }
 
-.cancel-btn {
+.noo-btn {
     background: linear-gradient(135deg, #f8a68c 0%, #f8c793 100%);
     color: white;
 }

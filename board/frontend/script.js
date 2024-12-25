@@ -1,3 +1,5 @@
+const baseURL = 'http://localhost:55555';
+
 function updateTime() {
     const now = new Date();
     const timeElement = document.querySelector('.time');
@@ -20,23 +22,30 @@ function updateHealthData() {
     const heartRateElement = document.querySelector('.heart-rate .value');
     const breathRateElement = document.querySelector('.breath-rate .value');
 
-    const heartRate = Math.floor(Math.random() * 40) + 60; // 60-100 bpm
-    const breathRate = Math.floor(Math.random() * 8) + 12;  // 12-20 breaths/min
+    const randHeartRate = Math.floor(Math.random() * 20) + 60; // 60-80 bpm
+    const randBreathRate = Math.floor(Math.random() * 4) + 14;  // 14-18 breaths/min
 
-    heartRateElement.textContent = heartRate;
-    breathRateElement.textContent = breathRate;
+    const url = `${baseURL}/get_emotion`;
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            heartRateElement.textContent = data.heartRate ?? randHeartRate;
+            breathRateElement.textContent = data.breathRate ?? randBreathRate;
+        })
+        .catch(error => {
+            console.error('Error fetching weather data:', error);
+            heartRateElement.textContent  = randHeartRate
+            breathRateElement.textContent = randBreathRate;
+        });
 }
 
-function updateWeatherData() {
+function updateEmotionData() {
     const weatherIconElement = document.querySelector('.weather-icon');
     const temperatureElement = document.querySelector('.temperature');
     const descriptionElement = document.querySelector('.description');
     const locationElement = document.querySelector('.location');
 
-    // 使用 OpenWeatherMap API 获取天气数据（需要替换成你自己的 API key）
-    const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
-    const city = 'Shanghai'; // 你要查询的城市
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=zh_cn`;
+    const url = `${baseURL}/get_emotion`;
 
     fetch(url)
         .then(response => response.json())
@@ -104,6 +113,6 @@ updateMediaInfo();
 
 // 定时更新
 setInterval(updateTime, 1000);
-setInterval(updateHealthData, 5000); // 5 秒更新一次健康数据
+setInterval(updateHealthData, 200); // 5 秒更新一次健康数据
 // 天气数据更新频率可以根据需要调整，例如每 10 分钟更新一次
 setInterval(updateWeatherData, 600000);
