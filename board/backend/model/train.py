@@ -152,4 +152,8 @@ def main():
         print(f"Epoch {epoch+1}, Train Loss: {loss.item():.4f}, Val Loss: {val_loss.item():.4f}, Val Acc: {val_acc:.4f}")
 
 if __name__ == "__main__":
+    # a = extract_features(["./res/test.wav"])
+    # b = np.array([a, a])
+    # tensor = torch.tensor(b, dtype=torch.float32).unsqueeze(1).unsqueeze(2)
+    # print(tensor)
     main()
