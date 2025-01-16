@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:55555';
+const pageUrl = document.URL;
 
 function updateTime() {
     const now = new Date();
@@ -17,55 +17,66 @@ function updateTime() {
     dateElement.textContent = dateString;
 }
 
+const EmoMap = {
+    "happy": {
+        emoName: "😄",
+        desc: "",
+    },
+    "sad": {
+        emoName: "🙁",
+        desc: "",
+    },
+    "angry": {
+        emoName: "😠",
+        desc: "",
+    },
+    "suprised": {
+        emoName: "🤩",
+        desc: "",
+    },
+    "disgust": {
+        emoName: "🤮",
+        desc: "",
+    },
+    "fear": {
+        emoName: "😨",
+        desc: "",
+    },
+    "neutral": {
+        emoName: "🙂",
+        desc: "",
+    },
+}
+
 // 模拟数据更新 (实际应用中需要从真实数据源获取)
-function updateHealthData() {
+function updateData() {
     const heartRateElement = document.querySelector('.heart-rate .value');
     const breathRateElement = document.querySelector('.breath-rate .value');
+    const emoNameElement = document.querySelector('.emo-info .emo-name');
+    const emoDescElement = document.querySelector('.emo-info .emo-desc');
 
     const randHeartRate = Math.floor(Math.random() * 20) + 60; // 60-80 bpm
     const randBreathRate = Math.floor(Math.random() * 4) + 14;  // 14-18 breaths/min
 
-    const url = `${baseURL}/get_emotion`;
+    const url = `${pageUrl}/data`;
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            heartRateElement.textContent = data.heartRate ?? randHeartRate;
-            breathRateElement.textContent = data.breathRate ?? randBreathRate;
+            console.log(`fetch data: ${JSON.stringify(data)}`);
+            heartRateElement.textContent = data.heart ?? randHeartRate;
+            breathRateElement.textContent = data.breath ?? randBreathRate;
+
+            const emoName = data.emotion ?? "neutral";
+            emoNameElement.textContent = `当前情绪：${EmoMap[emoName].emoName}`;
+            emoDescElement.textContent = EmoMap[emoName].desc;
         })
         .catch(error => {
-            console.error('Error fetching weather data:', error);
+            console.error('Error fetching data:', error);
             heartRateElement.textContent  = randHeartRate
             breathRateElement.textContent = randBreathRate;
         });
 }
 
-function updateEmotionData() {
-    const weatherIconElement = document.querySelector('.weather-icon');
-    const temperatureElement = document.querySelector('.temperature');
-    const descriptionElement = document.querySelector('.description');
-    const locationElement = document.querySelector('.location');
-
-    const url = `${baseURL}/get_emotion`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            const iconCode = data.weather[0].icon;
-            const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-            weatherIconElement.innerHTML = `<img src="${iconUrl}" alt="Weather Icon">`;
-            temperatureElement.textContent = `${Math.round(data.main.temp)}°C`;
-            descriptionElement.textContent = data.weather[0].description;
-            locationElement.textContent = data.name;
-        })
-        .catch(error => {
-            console.error('Error fetching weather data:', error);
-            weatherIconElement.innerHTML = `<i class="fas fa-question-circle"></i>`;
-            temperatureElement.textContent = `--°C`;
-            descriptionElement.textContent = '获取失败';
-            locationElement.textContent = '未知';
-        });
-}
 
 function updateMediaInfo() {
     const mediaCoverElement = document.querySelector('.media-cover');
@@ -107,12 +118,9 @@ function updateMediaInfo() {
 
 // 初始化
 updateTime();
-updateHealthData();
-updateWeatherData();
-updateMediaInfo();
+updateData();
+// updateMediaInfo();
 
 // 定时更新
 setInterval(updateTime, 1000);
-setInterval(updateHealthData, 200); // 5 秒更新一次健康数据
-// 天气数据更新频率可以根据需要调整，例如每 10 分钟更新一次
-setInterval(updateWeatherData, 600000);
+setInterval(updateData, 1000);

@@ -93,17 +93,17 @@ body {
     align-items: center;
 }
 
-.weather-icon {
+/* .weather-icon {
     font-size: 64px;
     margin-right: 20px;
     text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+} */
 
-.weather-info {
+.emo-info {
     text-align: left;
 }
 
-.temperature {
+.emo-name {
     font-size: 48px;
     font-weight: bold;
 }
@@ -164,10 +164,6 @@ body {
     }
 }
 
-.time,
-.weather-icon {
-    animation: glow 3s ease-in-out infinite;
-}
 
 /* 响应式设计 (可选) */
 @media (max-width: 1920px) {
