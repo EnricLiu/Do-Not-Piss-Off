@@ -176,3 +176,8 @@ tmp
 
 tools
 dataset
+board/backend/model/ckpt
+board/backend/model/pretrained
+board/backend/model/results
+board/backend/model/res
+board/backend/model/outputs
