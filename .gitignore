@@ -172,5 +172,7 @@ cython_debug/
 
 .*
 
+tmp
+
 tools
 dataset

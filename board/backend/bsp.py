@@ -6,10 +6,11 @@ from pathlib import Path
 import threading
 
 from piserial import Serial
+from emo2vec import Emo2VecPredictor
 
 
 class Board:
-    VALID_EMOTIONS = ["happy", "sad", "angry", "disgust", "fear", "neutral"]
+    VALID_EMOTIONS = ["happy", "sad", "angry", "disgust", "fear", "neutral", "surprised"]
 
     def __init__(self, serial_port: str, tmp_path: Path, baudrate: int=115200, timeout=1):
         self._ser = Serial(serial_port, baudrate, timeout)
@@ -39,7 +40,7 @@ class Board:
         
         self.tmp_path = tmp_path
 
-    def start_task(self):
+    def start_uart_task(self):
         while True:
             try:
                 self._pull_msg()
@@ -92,6 +93,24 @@ class Board:
                         ret[k] = self._last_fake_msg[k]
 
         return ret
+    
+    async def start_emo_task(self):
+        predictor = Emo2VecPredictor("./model/pretrained/emo2vec/seed")
+        while True:
+            try:
+                vocal = await self.record(2)
+                result = predictor.infer(vocal)
+                if result is not None and len(result) > 0:
+                    emotion, percent = result[0]
+                    if percent > 0.5:
+                        self._lock.acquire()
+                        self._last_msg["emotion"] = emotion
+                        self._lock.release()
+                
+            except Exception as e:
+                print(e)
+            finally:
+                time.sleep(1)
 
     async def record(self, duration_s: int=5):
         id = round(time.time())
