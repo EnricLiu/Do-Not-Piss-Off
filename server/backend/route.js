@@ -58,7 +58,7 @@ const update_game_info = (new_info) => {
 
 let currEmotion = null;
 
-const emotionList = ["happy", "sad", "angry", "surprised", "fear", "neutral"]
+const emotionList = ["happy", "sad", "angry", "disgust", "fear", "neutral"]
 const update_emotion = (new_emotion) => {
     if(!new_emotion?.emotion) throw new Error("Invalid request");
     if(!emotionList.includes(new_emotion["emotion"])) throw new Error("Invalid request");

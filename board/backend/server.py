@@ -7,6 +7,7 @@ import random
 import requests
 import threading
 from bsp import Board
+from bsp import Board
 
 config = json.load(open("config.json"))
 baseURL = config["baseURL"]
